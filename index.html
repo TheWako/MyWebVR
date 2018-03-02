@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>Hello, WebVR! - A-Frame</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame" />
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+      var playerPts = 0;
+      var audio = new Audio("assets/sounds/laser.wav"); 
+      AFRAME.registerComponent('handle-events', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          
+          el.addEventListener('mouseenter', function () {
+            el.setAttribute('color', 'red');
+          });
+          el.addEventListener('mouseleave', function () {
+            el.setAttribute('color', '#4CC3D9');  
+          });
+          el.addEventListener('click', function () {
+            el.parentNode.removeChild(el);
+            playerPts = playerPts + 100;
+            console.log(playerPts);
+            audio.play();
+          });
+        }
+      });
+
+      AFRAME.registerComponent('move1', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          el.addEventListener('click', function () {
+            var cameraEl = document.querySelector('[camera]');
+            cameraEl.setAttribute("position", {x:14.978, y:8.243, z:-31.693});
+          });
+        }
+      });
+
+      AFRAME.registerComponent('move2', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          el.addEventListener('click', function () {
+            var cameraEl = document.querySelector('[camera]');
+            cameraEl.setAttribute("position", {x:-14.749, y:30.060, z:-25.887});
+          });
+        }
+      });
+
+      AFRAME.registerComponent('move3', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          el.addEventListener('click', function () {
+            var cameraEl = document.querySelector('[camera]');
+            cameraEl.setAttribute("position", {x:-1.180, y:30.060, z:6.898});
+          });
+        }
+      });
+
+      AFRAME.registerComponent('move4', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          el.addEventListener('click', function () {
+            var cameraEl = document.querySelector('[camera]');
+            cameraEl.setAttribute("position", {x:-7.034, y:30.783, z:33.549});
+          });
+        }
+      });
+
+      AFRAME.registerComponent('move5', {
+        init: function () {
+          var el = this.el;  // &lt;a-box&gt;
+          el.addEventListener('click', function () {
+            var cameraEl = document.querySelector('[camera]');
+            cameraEl.setAttribute("position", {x:-7.034, y:5.060, z:33.549});
+          });
+        }
+      });
+    </script>
+  <body>
+    <a-scene>
+    <a-camera id="mainCamera" position="15.344 6.643 -10.323" scale="0.7 0.7 0.7">
+      <a-cursor></a-cursor>
+      <a-entity gltf-model="assets/model/gun/scene.gltf" position="1.492 -1.612 -1.2" scale="0.2 0.2 0.2"><a-entity>
+    </a-camera>
+      <a-sphere position="-16.562 13.158 -4.642" color="#4CC3D9" handle-events="" scale="2 2 2">
+        <a-animation attribute="position" dur="1000" from="4.562 13.158 -4.642" to="-16.562 8.158 -4.642" repeat="indefinite"></a-animation>
+      </a-sphere>
+      <a-sphere position="-8.264 6.728 -12.252" color="#4CC3D9" handle-events="" scale="2 2 2">
+        <a-animation attribute="position" dur="1000" from="-8.264 6.728 -12.252" to="12.562 6.728 -12.252" repeat="indefinite"></a-animation>
+      </a-sphere>
+      <a-sphere position="-13.711 8.481 -21.743" color="#4CC3D9" handle-events="" scale="2 2 2">
+        <a-animation attribute="position" dur="1000" from="-13.711 8.481 -21.743" to="8.562 8.481 -21.743" repeat="indefinite"></a-animation>
+      </a-sphere>
+      <a-sphere position="-60.714 17.473 15.193" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="-48.286 7.987 -7.027" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="5.268 31.512 -7.027" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="10.587 37.253 23.375" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="15.45 27.233 13.497" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="-12.143 29.092 -8.173" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="-8.217 35.458 6.654" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-sphere position="-13.851 26.496 33.005" color="#4CC3D9" handle-events="" scale="2 2 2"></a-sphere>
+      <a-entity rotation="-90 0 0" ply-model="src: assets/model/room.ply">
+        <a-plane position="13.941 31.509 0.6" geometry="primitive:box;height:9;width:10" scale="1 1 2" material="opacity:0" move1></a-plane>
+        <a-plane position="-15.112 18.504 21.59" geometry="primitive:box;height:9;width:10" scale="1 1 2" material="opacity:0" move2></a-plane>
+        <a-plane position="0.171 -7.423 21.59" geometry="primitive:box;height:9;width:10" scale="1 1 2" material="opacity:0" move3></a-plane>
+        <a-plane position="-6.985 -34.369 0.6" geometry="primitive:box;height:9;width:10" scale="1 1 2" material="opacity:0" move4></a-plane>
+        <a-plane position="-6.985 -34.369 21.593" geometry="primitive:box;height:9;width:10" scale="1 1 2" material="opacity:0" move5></a-plane>
+      <a-entity>
+      <a-sky color="black"></a-sky>
+    </a-scene>
+  </body>
+  </html>
